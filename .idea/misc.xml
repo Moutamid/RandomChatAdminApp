@@ -5,12 +5,21 @@
       <map>
         <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/drawable-v24/edit_text_background.xml" value="0.169" />
         <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/drawable/bg_button.xml" value="0.169" />
+        <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/drawable/divider.xml" value="0.1695" />
+        <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.1695" />
+        <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/drawable/ic_baseline_link_24.xml" value="0.1695" />
         <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/activity_login.xml" value="0.12273550724637682" />
         <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/activity_main.xml" value="0.12273550724637682" />
+        <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/activity_privacy_policy_screen.xml" value="0.12454710144927536" />
+        <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/activity_terms_and_condition.xml" value="0.12454710144927536" />
+        <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/activity_vip_user.xml" value="0.12454710144927536" />
         <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.12273550724637682" />
         <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/fragment_home.xml" value="0.12273550724637682" />
         <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/fragment_notifications.xml" value="0.12273550724637682" />
+        <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/fragment_settings.xml" value="0.12454710144927536" />
+        <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/link_alert_dialog_screen.xml" value="0.12454710144927536" />
         <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/user_item.xml" value="0.14266304347826086" />
+        <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/layout/vip_user_item.xml" value="0.12454710144927536" />
         <entry key="..\:/New folder/Fiverr/Tayyab Projects/RandomChatAdminApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
       </map>
     </option>

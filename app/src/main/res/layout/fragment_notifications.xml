@@ -49,7 +49,7 @@
             android:layout_marginTop="8dp"
             android:inputType="text"
             android:padding="8dp"
-            android:id="@+id/bid"
+            android:id="@+id/bannerid"
             android:hint="ca-app-pub-3940256099942544/6300978111"/>
 
 

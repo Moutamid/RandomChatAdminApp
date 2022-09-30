@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.fall_detection.randomchatadminapp">
+    package="com.moutamid.adminrandomchat">
 
     <application
         android:allowBackup="true"
@@ -14,12 +14,21 @@
         android:theme="@style/Theme.RandomChatAdminApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.moutamid.adminrandomchat.VipUserActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.moutamid.adminrandomchat.TermsAndCondition"
+            android:exported="false" />
+        <activity
+            android:name="com.moutamid.adminrandomchat.PrivacyPolicyScreen"
+            android:exported="false" />
+        <activity
+            android:name="com.moutamid.adminrandomchat.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="true" >
+            android:name="com.moutamid.adminrandomchat.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
