@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 
 import com.moutamid.adminrandomchat.Adapter.VipUserListAdapter;
 import com.moutamid.adminrandomchat.Model.UserModel;
@@ -18,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class VipUserActivity extends AppCompatActivity {
@@ -62,7 +65,8 @@ public class VipUserActivity extends AppCompatActivity {
     private void getUserList() {
 
         Constants.databaseReference().child(Constants.USERS)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()){
@@ -76,6 +80,24 @@ public class VipUserActivity extends AppCompatActivity {
 
                         adapter = new VipUserListAdapter(VipUserActivity.this,userModelList);
                         b.recyclerView.setAdapter(adapter);
+                       /* adapter.setOnItemClick(new VipUserListAdapter.OnitemClickListener() {
+                            @Override
+                            public void onaddclick(int position, View view) {
+                                UserModel userModel = userModelList.get(position);
+                                if (!userModel.is_vip){
+                                    HashMap<String,Object> hashMap = new HashMap<>();
+                                    hashMap.put("is_vip",true);
+                                    Constants.databaseReference().child(Constants.USERS)
+                                            .child(userModel.getUid()).updateChildren(hashMap);
+                                }else {
+                                    HashMap<String,Object> hashMap = new HashMap<>();
+                                    hashMap.put("is_vip",false);
+                                    Constants.databaseReference().child(Constants.USERS)
+                                            .child(userModel.getUid()).updateChildren(hashMap);
+                                }
+
+                            }
+                        });*/
                         adapter.notifyDataSetChanged();
                     }
 

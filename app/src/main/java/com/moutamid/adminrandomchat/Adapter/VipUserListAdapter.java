@@ -98,6 +98,7 @@ public class VipUserListAdapter extends RecyclerView.Adapter<VipUserListAdapter.
     public void onBindViewHolder(@NonNull View_Holder holder, int position) {
 
         UserModel model = users.get(position);
+        boolean isChecked = false;
 
         holder.title.setText(model.getName());
         if(model.getProfile_url().equals("")){
@@ -120,14 +121,15 @@ public class VipUserListAdapter extends RecyclerView.Adapter<VipUserListAdapter.
         }else {
             holder.onOff.setChecked(false);
         }
-        holder.onOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.onOff.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
+            public void onClick(View view) {
+                if (!model.isIs_vip()){
                     HashMap<String,Object> hashMap = new HashMap<>();
                     hashMap.put("is_vip",true);
                     Constants.databaseReference().child(Constants.USERS)
                             .child(model.getUid()).updateChildren(hashMap);
+
                 }else {
                     HashMap<String,Object> hashMap = new HashMap<>();
                     hashMap.put("is_vip",false);
