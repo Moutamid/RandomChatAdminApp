@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Toast;
 
 import com.moutamid.adminrandomchat.Adapter.VipUserListAdapter;
 import com.moutamid.adminrandomchat.Model.UserModel;
@@ -65,7 +66,7 @@ public class VipUserActivity extends AppCompatActivity {
     private void getUserList() {
 
         Constants.databaseReference().child(Constants.USERS)
-                .addValueEventListener(new ValueEventListener() {
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -73,29 +74,29 @@ public class VipUserActivity extends AppCompatActivity {
                             userModelList.clear();
                             b.total.setText("Total Users: " + snapshot.getChildrenCount());
                             for (DataSnapshot ds : snapshot.getChildren()){
-                                UserModel model = ds.getValue(UserModel.class);
-                                userModelList.add(model);
+                                UserModel userModel = ds.getValue(UserModel.class);
+                                userModelList.add(userModel);
                             }
                         }
 
                         adapter = new VipUserListAdapter(VipUserActivity.this,userModelList);
                         b.recyclerView.setAdapter(adapter);
-                       /* adapter.setOnItemClick(new VipUserListAdapter.OnitemClickListener() {
+                      /*  adapter.setOnItemClick(new VipUserListAdapter.OnitemClickListener() {
                             @Override
-                            public void onaddclick(int position, View view) {
-                                UserModel userModel = userModelList.get(position);
-                                if (!userModel.is_vip){
+                            public void OnItemClick(int position) {
+                                UserModel model = userModelList.get(position);
+                                if (!model.isIs_vip()){
                                     HashMap<String,Object> hashMap = new HashMap<>();
                                     hashMap.put("is_vip",true);
                                     Constants.databaseReference().child(Constants.USERS)
-                                            .child(userModel.getUid()).updateChildren(hashMap);
+                                            .child(model.getUid()).updateChildren(hashMap);
+
                                 }else {
                                     HashMap<String,Object> hashMap = new HashMap<>();
                                     hashMap.put("is_vip",false);
                                     Constants.databaseReference().child(Constants.USERS)
-                                            .child(userModel.getUid()).updateChildren(hashMap);
+                                            .child(model.getUid()).updateChildren(hashMap);
                                 }
-
                             }
                         });*/
                         adapter.notifyDataSetChanged();

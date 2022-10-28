@@ -11,6 +11,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,10 +30,11 @@ import java.util.List;
 //adapter is a class which we used to show list of data for example this adapter is used to show all the compaings in the project
 public class VipUserListAdapter extends RecyclerView.Adapter<VipUserListAdapter.View_Holder> implements Filterable {
     private VipUserListAdapter.OnitemClickListener mListener;
+    private boolean isChecked = false;
 
     public interface OnitemClickListener {
         void OnItemClick(int position);//
-        void onaddclick(int position);
+        //void onaddclick(int position);
 
     }
 
@@ -98,7 +100,6 @@ public class VipUserListAdapter extends RecyclerView.Adapter<VipUserListAdapter.
     public void onBindViewHolder(@NonNull View_Holder holder, int position) {
 
         UserModel model = users.get(position);
-        boolean isChecked = false;
 
         holder.title.setText(model.getName());
         if(model.getProfile_url().equals("")){
@@ -116,28 +117,42 @@ public class VipUserListAdapter extends RecyclerView.Adapter<VipUserListAdapter.
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .into(holder.img);
         }
-        if (model.isIs_vip()){
-            holder.onOff.setChecked(true);
-        }else {
-            holder.onOff.setChecked(false);
-        }
+        holder.setIsRecyclable(false);
+        holder.onOff.setChecked(model.isIs_vip());
+        holder.onOff.setTag(position);
         holder.onOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!model.isIs_vip()){
+                Integer pos = (Integer) holder.onOff.getTag();
+
+
+                if (users.get(pos).isIs_vip()) {
+                    HashMap<String,Object> hashMap = new HashMap<>();
+                    hashMap.put("is_vip",false);
+                    Constants.databaseReference().child(Constants.USERS)
+                            .child(model.getUid()).updateChildren(hashMap);
+                    users.get(pos).setIs_vip(false);
+                } else {
                     HashMap<String,Object> hashMap = new HashMap<>();
                     hashMap.put("is_vip",true);
                     Constants.databaseReference().child(Constants.USERS)
                             .child(model.getUid()).updateChildren(hashMap);
 
-                }else {
-                    HashMap<String,Object> hashMap = new HashMap<>();
-                    hashMap.put("is_vip",false);
-                    Constants.databaseReference().child(Constants.USERS)
-                            .child(model.getUid()).updateChildren(hashMap);
+                    users.get(pos).setIs_vip(true);
                 }
+
             }
         });
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
@@ -156,6 +171,14 @@ public class VipUserListAdapter extends RecyclerView.Adapter<VipUserListAdapter.
             title = (TextView) itemView.findViewById(R.id.userNames);
             img=itemView.findViewById(R.id.imgProfile);
             onOff = itemView.findViewById(R.id.onOff);
+           /* onOff.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null){
+                        mListener.OnItemClick(getAdapterPosition());
+                    }
+                }
+            });*/
         }
     }
 }
